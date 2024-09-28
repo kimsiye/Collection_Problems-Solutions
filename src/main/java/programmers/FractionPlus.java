@@ -26,8 +26,81 @@ public class FractionPlus {
 //        입출력 예 #2
 //        9 / 2 + 1 / 3 = 29 / 6입니다. 따라서 [29, 6]을 return 합니다.
 
+        Solution s1 = new Solution();
+        int[] value = s1.solution(2,8,2,8);
+        System.out.printf("분자 : %s, 분모 : %s", value[0], value[1]);
 
-        // 2차 풀이가 너무 코드의 양이 많아 하드코딩 인것 같아서 줄이고자 함
+
+    }
+}
+
+class Solution {
+    public int[] solution(int numer1, int denom1, int numer2, int denom2) {
+        int[] answer = {0, 0};
+
+        answer[0] = (numer1 * denom2) + (numer2 * denom1);
+        answer[1] = denom1 * denom2;
+
+        for (int i = answer[1]; i >= 1; i--) {
+            if (answer[1] % i == 0) {
+                if (answer[0] % i == 0) {
+                    answer[0] = answer[0] / i;
+                    answer[1] = answer[1] / i;
+                }
+
+            }
+        }
+        return answer;
+    }
+}
+
+/*
+class Solution {
+    public int[] solution(int numer1, int denom1, int numer2, int denom2) {
+
+        int[] answer = {0, 0};
+
+        if (denom1 == denom2) {
+            answer[0] = numer1 + numer2;
+            answer[1] = denom1;
+
+        }
+
+        if (denom1 != denom2 && denom1 % denom2 != 0 && denom2 % denom1 != 0) {
+            answer[0] = (numer1 * denom2) + (numer2 * denom1);
+            answer[1] = denom1 * denom2;
+
+        }
+
+        if (denom1 > denom2) {
+            answer[0] = numer2 * denom2 + numer1;
+            answer[1] = denom1;
+
+        }
+
+        if (denom1 < denom2) {
+            answer[0] = numer1 * denom1 + numer2;
+            answer[1] = denom2;
+
+        }
+
+        for(int i = answer[1] ; i >= 1; i--){
+            if(answer[1]  % i == 0){
+                if(answer[0] % i == 0){
+                    answer[0] = answer[0] / i;
+                    answer[1]  = answer[1]  / i;
+                }
+
+            }
+        }
+
+        return answer;
+    }
+}
+*/
+/* 3차 풀이
+
+       // 2차 풀이가 너무 코드의 양이 많아 하드코딩 인것 같아서 줄이고자 함
         int numer1 = 2;
         int denom1 = 8;
         int numer2 = 2;
@@ -56,9 +129,7 @@ public class FractionPlus {
         // 분모는 분모끼리 곱하셔 결과를 구해서
         // 약분을 진행함 더 깔끔해진것 같음
 
-
-    }
-}
+ */
 /*2차 풀이
         int numer1 = 2;
         int denom1 = 8;
@@ -163,18 +234,6 @@ public class FractionPlus {
 
         System.out.printf("분자 : %s, 분모 : %s", ja, mo);
 */
-
-
-
-
-
-
-
-
-
-
-
-
 /* 1차 풀이
 class Solution {
     public int[] solution(int numer1, int denom1, int numer2, int denom2) {
